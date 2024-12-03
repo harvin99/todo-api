@@ -33,38 +33,54 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+link docs: https://dummyjson.com/docs/todos
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Require: Create an app todo using data from api TODO
+endpoint API: https://dummyjson.com/
+GET list todos: https://dummyjson.com/todos
+example: 
+    fetch('https://dummyjson.com/todos')
+    .then(res => res.json())
+    .then(console.log);
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+GET TODO by id: https://dummyjson.com/todos/1
+example:
+    fetch('https://dummyjson.com/todos/1')
+    .then(res => res.json())
+    .then(console.log);
 
-## Learn More
+ADD NEW TODO: 
+example: 
+    fetch('https://dummyjson.com/todos/add', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+        todo: 'Use DummyJSON in the project',
+        completed: false,
+        userId: 5,
+    })
+    })
+    .then(res => res.json())
+    .then(console.log);
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+UPDATE A TODO
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+example
+    /* updating completed status of todo with id 1 */
+    fetch('https://dummyjson.com/todos/1', {
+    method: 'PUT', /* or PATCH */
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+        completed: false,
+    })
+    })
+    .then(res => res.json())
+    .then(console.log);
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+DELETE A TODO
+ example:
+    fetch('https://dummyjson.com/todos/1', {
+    method: 'DELETE',
+    })
+    .then(res => res.json())
+    .then(console.log);
